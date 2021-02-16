@@ -23,13 +23,10 @@ for i in clusters:
   inertia.append(k_means.inertia_)
 
 
-clusters = range(1, 11)
-inertia = []
-data = df2.to_numpy()
-for i in clusters:
-  k_means = KMeans(n_clusters=i)
-  k_clusters = k_means.fit_predict(data)
-  inertia.append(k_means.inertia_)
+plt.plot(clusters, inertia, 'bx-')
+plt.xlabel('k')
+plt.ylabel('Inertia')
+plt.show()
 
 
 scaler = MinMaxScaler()
@@ -62,9 +59,12 @@ with open(filename, "rb") as file:
   model = pickle.load(file)
 
 
+model.score(X_test, y_test)
 
-from sklearn.model_selection import cross_val_score
-train_score = cross_val_score(model, X_train, y_train, scoring="neg_mean_squared_error")
-print(f"Train Score: {train_score}")
-test_score = cross_val_score(model, X_test, y_test, scoring="neg_mean_squared_error")
-print(f"Test Score: {test_score}")
+
+
+# from sklearn.model_selection import cross_val_score
+# train_score = cross_val_score(model, X_train, y_train, scoring="neg_mean_squared_error")
+# print(f"Train Score: {train_score}")
+# test_score = cross_val_score(model, X_test, y_test, scoring="neg_mean_squared_error")
+# print(f"Test Score: {test_score}")
