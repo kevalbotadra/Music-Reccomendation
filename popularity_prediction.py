@@ -59,7 +59,8 @@ with open(filename, "rb") as file:
   model = pickle.load(file)
 
 
-model.score(X_test, y_test)
+scores = model.score(X_test, y_test)
+print(scores)
 
 
 
