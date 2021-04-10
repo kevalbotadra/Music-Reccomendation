@@ -42,25 +42,25 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 
 
-""" comment when model has already been trained """
-emotion_dmatrix = xgb.DMatrix(X_train, y_train)
+# """ comment when model has already been trained """
+# emotion_dmatrix = xgb.DMatrix(X_train, y_train)
 
-hyper_param_opts = {
-    "learning_rate" : [0.01,0.1,0.5,0.9],
-    "n_estimators" : [100],
-    "sub_sample" : [0.3,0.5,0.9]
-}
+# hyper_param_opts = {
+#     "learning_rate" : [0.01,0.1,0.5,0.9],
+#     "n_estimators" : [100],
+#     "sub_sample" : [0.3,0.5,0.9]
+# }
 
-boost = xgb.XGBRegressor()
+# boost = xgb.XGBRegressor()
 
-boost_model = GridSearchCV(estimator=boost, param_grid=hyper_param_opts, scoring='neg_mean_squared_error', cv=4, verbose=1)
+# boost_model = GridSearchCV(estimator=boost, param_grid=hyper_param_opts, scoring='neg_mean_squared_error', cv=4, verbose=1)
 
-boost_model.fit(X,y)
+# boost_model.fit(X,y)
 
-print(f"Best Parameters: {boost_model.best_params_}")
-print(f"Best Score: {np.sqrt(np.abs(boost_model.best_score_))}")
+# print(f"Best Parameters: {boost_model.best_params_}")
+# print(f"Best Score: {np.sqrt(np.abs(boost_model.best_score_))}")
 
-pickle.dump(boost_model, open(filename, 'wb'))
+# pickle.dump(boost_model, open(filename, 'wb'))
 
 
 
@@ -72,7 +72,7 @@ with open(filename, "rb") as file:
 print(f"Best Parameters: {boost_model.best_params_}")
 print(f"Best Score: {np.sqrt(np.abs(boost_model.best_score_))}")
 
-song = get_for_popularity("Falling", "surfaces")
+song = get_for_popularity("cable car", "abhi the nomad")
 song_pred = (boost_model.predict(song)[0]*100)
 print(song_pred)
 
