@@ -162,18 +162,6 @@ def predict_feature_dataset(feature, t_size):
 
   return X_train, X_test, y_train, y_test
 
-  
-
-
-
-
-
-
-
-
-
-
-
 
 
 """Popularity Prediction Model"""
